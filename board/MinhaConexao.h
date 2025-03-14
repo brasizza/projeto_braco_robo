@@ -6,6 +6,7 @@ private:
   const char* _password;
 
 public:
+   String deviceID;
   MinhaConexao(const char* ssid, const char* password) {
     _ssid = ssid;
     _password = password;
@@ -23,6 +24,7 @@ public:
       Serial.println(WiFi.localIP());
       Serial.print("Seu Mac: ");
       Serial.println(WiFi.macAddress());
+      deviceID = WiFi.macAddress();
     }
   }
   void checaConexao() {
