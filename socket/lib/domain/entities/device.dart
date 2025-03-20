@@ -40,16 +40,20 @@ class Device {
 
   String toJson() => json.encode(toMap());
 
-  factory Device.fromJson(String source) => Device.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Device.fromJson(String source) =>
+      Device.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'Device(deviceId: $deviceId, deviceType: $deviceType, socket: $socket)';
+  String toString() =>
+      'Device(deviceId: $deviceId, deviceType: $deviceType, socket: $socket)';
 
   @override
   bool operator ==(covariant Device other) {
     if (identical(this, other)) return true;
 
-    return other.deviceId == deviceId && other.deviceType == deviceType && other.socket == socket;
+    return other.deviceId == deviceId &&
+        other.deviceType == deviceType &&
+        other.socket == socket;
   }
 
   @override
