@@ -10,10 +10,7 @@ class SocketServer {
   HttpServer? _server;
   GerenciarDevices gerenciarDevices;
 
-  SocketServer(
-      {required int wsPort,
-      required this.gerenciarDevices,
-      required int httpPort})
+  SocketServer({required int wsPort, required this.gerenciarDevices, required int httpPort})
       : _wsPort = wsPort,
         _httpPort = httpPort;
 
@@ -22,10 +19,7 @@ class SocketServer {
       request.response
         ..headers.contentType = ContentType.json
         ..statusCode = HttpStatus.ok
-        ..write(json.encode({
-          'devices':
-              gerenciarDevices.mostrarDevices().map((d) => d.toMap()).toList()
-        }))
+        ..write(json.encode({'devices': gerenciarDevices.mostrarDevices().map((d) => d.toMap()).toList()}))
         ..close();
     }
   }
@@ -35,8 +29,7 @@ class SocketServer {
       InternetAddress.anyIPv4,
       _wsPort,
     );
-    final httpServer =
-        await HttpServer.bind(InternetAddress.anyIPv4, _httpPort);
+    final httpServer = await HttpServer.bind(InternetAddress.anyIPv4, _httpPort);
     httpServer.listen(gerenciarHttp);
     print("Socket rodando em ws://${_server!.address.address}:$_wsPort");
     await for (var request in _server!) {
@@ -65,7 +58,7 @@ class SocketServer {
       var device = Device(deviceId: deviceId, deviceType: deviceType);
       gerenciarDevices.cadastrarDevice(device);
       print(
-        "Socket foi conectado, bem vindo:  $deviceId",
+        "Socket foi conectado, bem vindo:  $deviceId => $deviceType",
       );
       socket.listen((mensagem) {
         print("Mensagem do socket  $mensagem");

@@ -1,7 +1,7 @@
 #include <WebSocketsClient.h>
 #include "MinhaConexao.h"
 WebSocketsClient websocket;
-const char *SOCKET_HOST="192.168.5.58";
+const char *SOCKET_HOST="134.122.113.157";
 const uint16_t SOCKET_PORT=8089;
 MinhaConexao minhaConexao(WIFI_SSID, WIFI_PASSWORD);
 
